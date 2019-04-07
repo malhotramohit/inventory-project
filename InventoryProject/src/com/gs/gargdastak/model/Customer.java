@@ -1,12 +1,24 @@
 package com.gs.gargdastak.model;
 
+import java.util.List;
+
 public class Customer {
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Customer [custId=" + custId + ", customerName=" + customerName + ", city=" + city + ", grade=" + grade
+				+ ", salesman=" + salesman + ", orderList=" + orderList + "]";
+	}
 
 	private long custId;
 	private String customerName;
 	private String city;
 	private String grade;
 	private Salesman salesman;
+	private List<Order> orderList;
 
 	public Customer(long custId, String customerName, String city, String grade, Salesman salesman) {
 		this.custId = custId;
@@ -89,6 +101,14 @@ public class Customer {
 	 */
 	public void setSalesman(Salesman salesman) {
 		this.salesman = salesman;
+	}
+
+	public List<Order> getOrderList() {
+		return orderList;
+	}
+
+	public void setOrderList(List<Order> orderList) {
+		this.orderList = orderList;
 	}
 
 }

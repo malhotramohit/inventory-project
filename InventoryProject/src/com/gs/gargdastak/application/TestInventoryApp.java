@@ -1,7 +1,14 @@
 package com.gs.gargdastak.application;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 import com.gs.gargdastak.model.Customer;
+import com.gs.gargdastak.model.Order;
 import com.gs.gargdastak.model.Salesman;
+import com.gs.gargdastak.service.CustomerService;
+import com.gs.gargdastak.service.CustomerServiceImpl;
 import com.gs.gargdastak.service.SalemanNotFoundException;
 import com.gs.gargdastak.service.SalesmanService;
 import com.gs.gargdastak.service.SalesmanServiceImpl;
@@ -9,6 +16,7 @@ import com.gs.gargdastak.service.SalesmanServiceImpl;
 public class TestInventoryApp {
 
 	private static SalesmanService salesmanService = new SalesmanServiceImpl();
+	private static CustomerService customerService = new CustomerServiceImpl();
 
 	public static void main(String[] args) {
 
@@ -25,17 +33,44 @@ public class TestInventoryApp {
 	}
 
 	private static void testCustomerFunc() {
+
 		Salesman salesman = new Salesman(1, "Mohit", "Delhi", 2344.22334);
 		salesmanService.save(salesman);
 
-		Customer customer = new Customer(1, "RahulCus", "GGN", "A", salesman);
+		Salesman salesman1 = new Salesman(2, "Rohit", "Mumbai", 5000.12);
+		salesmanService.save(salesman1);
+
+
+		Order order1 = new Order(1, 2323, new Date(), null, salesman);
+		Order order2 = new Order(2, 2326, new Date(), null, salesman1);
+
+		List<Order> orderList = new ArrayList<Order>();
+		orderList.add(order1);
+		orderList.add(order2);
+
 		
-		//Interface : CustomerService
+		Customer customer = new Customer(1, "RahulCus", "GGN", "A", salesman);
+		customer.setOrderList(orderList);
+		
+		customerService.save(customer);
+
+		Customer customer2 = customerService.findById(1);
+
+		displayCustomer(customer2);
+		
+		
+
+
+		// Interface : CustomerService
 		// Impl: CustomerServiceImpl
 		// Dao Inter: CustomerDao
 		// Impl : CustomerDaoImpl
 		// Database util one method:
-		
+
+	}
+
+	private static void displayCustomer(Customer customer2) {
+		System.out.println(customer2);
 	}
 
 	private static void testSalemanFunc() {

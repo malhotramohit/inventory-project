@@ -2,7 +2,15 @@ package com.gs.gargdastak.model;
 
 import java.util.Date;
 
-public class Orders {
+public class Order {
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Order [orderId=" + orderId + ", purchaseAmt=" + purchaseAmt + ", orderDate=" + orderDate + "]";
+	}
 
 	private long orderId;
 	private double purchaseAmt;
@@ -10,7 +18,7 @@ public class Orders {
 	private Customer customer;
 	private Salesman salesman;
 
-	public Orders(long orderId, double purchaseAmt, Date orderDate, Customer customer, Salesman salesman) {
+	public Order(long orderId, double purchaseAmt, Date orderDate, Customer customer, Salesman salesman) {
 		this.orderId = orderId;
 		this.purchaseAmt = purchaseAmt;
 		this.orderDate = orderDate;
